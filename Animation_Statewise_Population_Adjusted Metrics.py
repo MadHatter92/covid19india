@@ -54,8 +54,8 @@ def animate(i):
 		axes = plt.gca()
 		axes.set_xlim([0,0.18])
 		axes.set_ylim([0,0.065])
-		ax1.yaxis.set_major_formatter(mtick.PercentFormatter())
-		ax1.xaxis.set_major_formatter(mtick.PercentFormatter())
+		ax1.yaxis.set_major_formatter(mtick.PercentFormatter(xmax=1))
+		ax1.xaxis.set_major_formatter(mtick.PercentFormatter(xmax=1))
 
 	else:
 		exit()
