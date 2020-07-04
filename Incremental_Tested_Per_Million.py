@@ -1,10 +1,14 @@
 import requests
 import json
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 
 cumulative_tested = []
 daily_tested = []
 Seven_DMA = []
+
+fig = plt.figure()
+ax1 = fig.add_subplot(1,1,1)
 
 url = 'https://api.covid19india.org/data.json'
 response = requests.get(url)
@@ -38,9 +42,10 @@ while begin >= 0:
 Seven_DMA.reverse()
 print(Seven_DMA)
 
-plt.plot(list(range(7,len(Seven_DMA)+7)), Seven_DMA, color = 'r', label = 'Seven Day Moving Average', linewidth = 5)
-plt.bar(list(range(0,len(focus))), focus, color = 'r', alpha = 0.2, label = 'Incremental Tested Per Million')
+ax1.plot(list(range(7,len(Seven_DMA)+7)), Seven_DMA, color = 'r', label = 'Seven Day Moving Average', linewidth = 5)
+ax1.bar(list(range(0,len(focus))), focus, color = 'r', alpha = 0.2, label = 'Incremental Tested Per Million')
 plt.title('Incremental Samples Tested Per Million')
 plt.xlabel('Days')
-plt.legend(loc="upper left")
+ax1.legend(loc="upper left")
+ax1.xaxis.set_major_locator(ticker.MultipleLocator(10))
 plt.show()	
