@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
 import squarify
 import matplotlib
+from datetime import date
 
 fig = plt.figure()
 ax1 = fig.add_subplot(1,1,1)
@@ -32,7 +33,9 @@ for state, pop, gdp in zip(state_list, state_pop, state_gdp_ppp_usd):
 	x.append(x_value)
 
 
-squarify.plot(sizes=z, label=state_list, alpha=.7 )
+squarify.plot(sizes=x, label=[state+ ' ' + "{:.1%}".format(value) for state,value in zip(state_list,x)], alpha=.7 )
+plt.title('State share in deceased cases: '+str(date.today()), fontweight = 'bold')
+# plt.figtext(0.7, 0.12, "Size of the circle indicates per capita GDP (PPP)", style = 'italic', fontweight = 'bold')
 plt.axis('off')
 plt.show() 
 
@@ -43,12 +46,11 @@ plt.show()
 
 # plt.xlabel('Share of deceased', fontweight = 'bold')
 # plt.ylabel('Share of confirmed cases', fontweight = 'bold')
-# plt.title('State share in confirmed cases vs share in deceased: '+str(date.today()), fontweight = 'bold')
-# plt.figtext(0.7, 0.12, "Size of the circle indicates per capita GDP (PPP)", style = 'italic', fontweight = 'bold')
+
 
 # axes = plt.gca()
 # # axes.set_xlim([0,0.026])
 # ax1.xaxis.set_major_formatter(mtick.PercentFormatter(xmax = 1))
 # ax1.yaxis.set_major_formatter(mtick.PercentFormatter(xmax = 1))
 
-plt.show()
+# plt.show()
